@@ -1,4 +1,4 @@
-# Neuro-Link Test Architecture
+# Orbiton Test Architecture
 
 This document outlines the testing structure for Neuro-Link and the purpose of each test suite.
 
@@ -329,7 +329,7 @@ Benefits:
 
 # Testing Philosophy
 
-Neuro-Link prioritizes behavior testing over implementation testing.
+Orbiton prioritizes behavior testing over implementation testing.
 
 Instead of testing:
 
@@ -349,4 +349,4 @@ Processing
 Result
 ```
 
-The goal is to verify that Neuro-Link behaves correctly from the user's perspective while remaining flexible internally.
+The goal is to verify that Orbiton behaves correctly from the user's perspective while remaining flexible internally.
