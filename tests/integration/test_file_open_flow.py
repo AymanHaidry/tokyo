@@ -2,18 +2,26 @@
 import pytest
 from pathlib import Path
 from unittest.mock import patch
+import sys
+
+
+def _patch_open_explorer():
+    """Patch the correct subprocess call based on platform."""
+    if sys.platform == "win32":
+        return patch('kosmosic_orbiton.subprocess.Popen')
+    return patch('kosmosic_orbiton.subprocess.run')
 
 
 def test_open_folder_flow(engine, parser, mock_ui, mock_voice, mock_memory, mock_intel):
     from kosmosic_orbiton import process_text
     with patch.object(Path, 'exists', return_value=True),          patch.object(Path, 'is_dir', return_value=True):
-        with patch('kosmosic_orbiton.subprocess.run') as mock_run:
+        with _patch_open_explorer() as mock_subprocess:
             success, action = process_text(
                 "open downloads",
                 engine, parser, mock_memory, mock_voice, mock_ui, mock_intel
             )
             assert success is True
-            mock_run.assert_called_once()
+            mock_subprocess.assert_called_once()
 
 
 def test_open_file_flow(engine, parser, mock_ui, mock_voice, mock_memory, mock_intel):

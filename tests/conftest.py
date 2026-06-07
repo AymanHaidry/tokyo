@@ -4,7 +4,9 @@ import os
 import pytest
 from unittest.mock import MagicMock, patch
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+# Add repo root to path regardless of where tests are run from
+_repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, _repo_root)
 
 
 @pytest.fixture
