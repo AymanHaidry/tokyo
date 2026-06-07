@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  🧠 NEURO-LINK INTELLIGENCE MODULE
+  🧠 ORBITON INTELLIGENCE MODULE
   Natural language understanding & knowledge engine
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 """
