@@ -19,9 +19,16 @@ def test_status_includes_command_count(engine):
     assert "42" in spoken or "commands" in spoken.lower()
 
 
-def test_status_report_console_table(engine, mock_ui):
+def test_status_report_console_table(engine):
     from kosmosic_orbiton import CommandEngine
-    mock_ui.console = True
-    engine2 = CommandEngine(mock_ui, engine.voice, engine.memory, engine.intel)
+    mock_ui = MagicMock()
+    mock_ui.error_count = 0
+    mock_ui.total_commands = 0
+    mock_ui.session_start = MagicMock()
+    mock_ui.console = MagicMock()  # Must be a MagicMock, not True/False
+    mock_voice = MagicMock()
+    mock_memory = MagicMock()
+    mock_intel = MagicMock()
+    engine2 = CommandEngine(mock_ui, mock_voice, mock_memory, mock_intel)
     engine2.handle_status()
     mock_ui.console.print.assert_called()

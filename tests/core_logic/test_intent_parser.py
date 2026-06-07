@@ -95,8 +95,8 @@ def test_exam_mode_intent(parser):
 
 def test_exam_board_variant(parser):
     """NLP fix: 'exam board' should map to exam_mode via NLP, not raw parser."""
-    intent, arg = parser.parse("exam board")
-    assert intent is None  # Regex parser does not handle 'exam board' with space
+    result = parser.parse("exam board")
+    assert result is None  # Regex parser does not handle 'exam board' with space
 
 
 def test_time_intent(parser):

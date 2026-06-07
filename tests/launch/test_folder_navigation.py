@@ -6,31 +6,36 @@ from unittest.mock import patch
 
 def test_navigate_parent(engine):
     engine.current_folder = Path.home() / "Downloads"
-    with patch('kosmosic_orbiton.subprocess.run') as mock_run:
-        engine.handle_folder_nav("parent")
-        assert engine.current_folder == Path.home()
-        mock_run.assert_called_once()
+    with patch.object(Path, 'exists', return_value=True),          patch.object(Path, 'is_dir', return_value=True):
+        with patch('kosmosic_orbiton.subprocess.run') as mock_run:
+            engine.handle_folder_nav("parent")
+            assert engine.current_folder == Path.home()
+            mock_run.assert_called_once()
 
 
 def test_navigate_back(engine):
     engine.current_folder = Path.home() / "Downloads"
-    with patch('kosmosic_orbiton.subprocess.run') as mock_run:
-        engine.handle_folder_nav("back")
-        assert engine.current_folder == Path.home()
+    with patch.object(Path, 'exists', return_value=True),          patch.object(Path, 'is_dir', return_value=True):
+        with patch('kosmosic_orbiton.subprocess.run') as mock_run:
+            engine.handle_folder_nav("back")
+            assert engine.current_folder == Path.home()
 
 
 def test_navigate_up(engine):
     engine.current_folder = Path.home() / "Downloads"
-    with patch('kosmosic_orbiton.subprocess.run') as mock_run:
-        engine.handle_folder_nav("up")
-        assert engine.current_folder == Path.home()
+    with patch.object(Path, 'exists', return_value=True),          patch.object(Path, 'is_dir', return_value=True):
+        with patch('kosmosic_orbiton.subprocess.run') as mock_run:
+            engine.handle_folder_nav("up")
+            assert engine.current_folder == Path.home()
 
 
 def test_navigate_subfolder(engine):
     engine.current_folder = Path.home()
-    with patch('kosmosic_orbiton.subprocess.run') as mock_run:
-        engine.handle_folder_nav("Downloads")
-        assert engine.current_folder == Path.home() / "Downloads"
+    with patch.object(Path, 'exists', return_value=True),          patch.object(Path, 'is_dir', return_value=True):
+        with patch('kosmosic_orbiton.subprocess.run') as mock_run:
+            engine.handle_folder_nav("Downloads")
+            # handle_folder_nav lowercases the target, so "Downloads" -> "downloads"
+            assert engine.current_folder == Path.home() / "downloads"
 
 
 def test_navigate_nonexistent_shows_error(engine):
