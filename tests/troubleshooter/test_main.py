@@ -19,7 +19,7 @@ def test_main_runs_flow_1(monkeypatch, capsys):
     monkeypatch.setattr("troubleshooter.ask", mock_ask)
     monkeypatch.setattr("troubleshooter.flow_wont_start", lambda: {})
     monkeypatch.setattr("troubleshooter.ask_yes_no", lambda *a, **k: False)
-    monkeypatch.setattr("builtins.input", lambda: "")
+    monkeypatch.setattr("builtins.input", lambda *a, **k: "")
     main()
     assert len(calls) == 2
 
@@ -34,7 +34,7 @@ def test_main_runs_flow_2(monkeypatch, capsys):
     monkeypatch.setattr("troubleshooter.ask", mock_ask)
     monkeypatch.setattr("troubleshooter.flow_voice_not_working", lambda: {})
     monkeypatch.setattr("troubleshooter.ask_yes_no", lambda *a, **k: False)
-    monkeypatch.setattr("builtins.input", lambda: "")
+    monkeypatch.setattr("builtins.input", lambda *a, **k: "")
     main()
     assert len(calls) == 2
 
@@ -49,7 +49,7 @@ def test_main_runs_flow_3(monkeypatch, capsys):
     monkeypatch.setattr("troubleshooter.ask", mock_ask)
     monkeypatch.setattr("troubleshooter.flow_tts_silent", lambda: {})
     monkeypatch.setattr("troubleshooter.ask_yes_no", lambda *a, **k: False)
-    monkeypatch.setattr("builtins.input", lambda: "")
+    monkeypatch.setattr("builtins.input", lambda *a, **k: "")
     main()
     assert len(calls) == 2
 
@@ -64,7 +64,7 @@ def test_main_runs_flow_4(monkeypatch, capsys):
     monkeypatch.setattr("troubleshooter.ask", mock_ask)
     monkeypatch.setattr("troubleshooter.flow_commands_wrong", lambda: {})
     monkeypatch.setattr("troubleshooter.ask_yes_no", lambda *a, **k: False)
-    monkeypatch.setattr("builtins.input", lambda: "")
+    monkeypatch.setattr("builtins.input", lambda *a, **k: "")
     main()
     assert len(calls) == 2
 
@@ -79,7 +79,7 @@ def test_main_runs_flow_5(monkeypatch, capsys):
     monkeypatch.setattr("troubleshooter.ask", mock_ask)
     monkeypatch.setattr("troubleshooter.flow_files_projects", lambda: {})
     monkeypatch.setattr("troubleshooter.ask_yes_no", lambda *a, **k: False)
-    monkeypatch.setattr("builtins.input", lambda: "")
+    monkeypatch.setattr("builtins.input", lambda *a, **k: "")
     main()
     assert len(calls) == 2
 
@@ -94,14 +94,14 @@ def test_main_runs_flow_6(monkeypatch, capsys):
     monkeypatch.setattr("troubleshooter.ask", mock_ask)
     monkeypatch.setattr("troubleshooter.flow_other", lambda: {})
     monkeypatch.setattr("troubleshooter.ask_yes_no", lambda *a, **k: False)
-    monkeypatch.setattr("builtins.input", lambda: "")
+    monkeypatch.setattr("builtins.input", lambda *a, **k: "")
     main()
     assert len(calls) == 2
 
 
 def test_main_runs_flow_7_no_data(monkeypatch, capsys):
     monkeypatch.setattr("troubleshooter.ask", lambda *a, **k: "7")
-    monkeypatch.setattr("builtins.input", lambda: "")
+    monkeypatch.setattr("builtins.input", lambda *a, **k: "")
     main()
     captured = capsys.readouterr()
     assert "No previous scan data" in captured.out
@@ -129,7 +129,7 @@ def test_main_restart_loop(monkeypatch):
     monkeypatch.setattr("troubleshooter.flow_wont_start", fake_flow1)
     monkeypatch.setattr("troubleshooter.flow_voice_not_working", fake_flow2)
     monkeypatch.setattr("troubleshooter.ask_yes_no", lambda *a, **k: False)
-    monkeypatch.setattr("builtins.input", lambda: "")
+    monkeypatch.setattr("builtins.input", lambda *a, **k: "")
     main()
     assert call_count["flow1"] == 1
     assert call_count["flow2"] == 1
@@ -137,7 +137,7 @@ def test_main_restart_loop(monkeypatch):
 
 def test_main_invalid_choice_then_valid(monkeypatch, capsys):
     inputs = iter(["99", "1", "q"])
-    monkeypatch.setattr("builtins.input", lambda: next(inputs))
+    monkeypatch.setattr("builtins.input", lambda *a, **k: next(inputs))
     monkeypatch.setattr("troubleshooter.flow_wont_start", lambda: {})
     monkeypatch.setattr("troubleshooter.ask_yes_no", lambda *a, **k: False)
     main()
@@ -147,7 +147,7 @@ def test_main_invalid_choice_then_valid(monkeypatch, capsys):
 
 def test_main_quit_choice(monkeypatch, capsys):
     monkeypatch.setattr("troubleshooter.ask", lambda *a, **k: "q")
-    monkeypatch.setattr("builtins.input", lambda: "")
+    monkeypatch.setattr("builtins.input", lambda *a, **k: "")
     main()
     captured = capsys.readouterr()
     assert "Stay productive" in captured.out
