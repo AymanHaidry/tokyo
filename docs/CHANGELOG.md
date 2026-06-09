@@ -47,6 +47,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Pylint score visibility** — `pylint.yml` now prints score to CI logs via dedicated `Pylint Score` step
 
 ---
+## [0.7.0] - 2026-06-08
+
+### Added
+- `troubleshooter.py` — standalone interactive diagnostic tool for diagnosing microphone, TTS, command, and file/project issues
+- `tests/troubleshooter/` — 56 new tests across 6 files (colors, input helpers, run_cmd, system checks, fix helpers, diagnostic flows)
+- `.github/workflows/troubleshooter.yml` — CI workflow for troubleshooter tests with Codecov coverage
+- `docs/TROUBLESHOOT.md` — massively expanded troubleshooting reference (+603 lines)
+- `TROUBLESHOOT.md` (root) — quick-reference troubleshooting guide
+- Full documentation index table in `README.md` (15 docs listed)
+- `## 🔧 Troubleshooting` section in `README.md`
+
+### Changed
+- Version bumped `0.6.2` → `0.7.0` across `README.md`, `MANUAL.md`, `website/index.html`, `docs/VERSIONS.md`
+- Test suite count updated 151 → 207 in CI workflow
+- `requirements.txt` reformatted with section comments
+- All root-level doc links in `README.md` updated to `docs/` paths
+- `docs/TESTS.md` updated with troubleshooter test category
+- `docs/VERSIONS.md` Tokyo-class version range: `1.x.x` → `0.x.x -> 1.x.x`
+- `MANUAL.md` version header updated to v0.7
+---
 
 ## [0.6.0] - 2026-06-07
 
