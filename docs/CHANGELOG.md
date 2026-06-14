@@ -18,6 +18,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - IoT integration
 - Auth system (online accounts)
 - Website for downloads and intel sharing
+- Config file system (JSON/YAML) to replace hardcoded `CONFIG` dict
+- Plugin architecture for third-party commands
+- Resolve self-listening bug (#27) before v1.0
+- Resolve Bandit security findings in `troubleshooter.py` (#60) before v1.0
+
+### Known Cosmetic Issues
+- Version string in `kosmosic_orbiton.py` docstring still shows `v0.6.2` — needs updating to `v0.7.1`
+
+---
+
+## [0.7.1] - 2026-06-14
+
+### Added
+- `docs/PROJECT_CONTEXT.md` — comprehensive project context document for contributors and AI tools; covers architecture, key files, dependencies, known issues, roadmap summary, and contributing guide
+- `docs/ARCHITECTURE_DECISIONS.md` — full ADR (Architecture Decision Record) log documenting 10 key architectural decisions (ADR-001 through ADR-010)
+
+### Changed
+- `website/index.html` — Google Search Console verification tag added for SEO
+- `website/` — model lineup updated on project website
+
+### Fixed
+- `tests/troubleshooter/main_test.py` — fixed `StopIteration` in `test_main_invalid_choice_then_valid` by providing correct 5-item input sequence to `iter()` (covers: invalid input → valid input → restart → quit → pause prompt)
+
+---
+
+## [0.7.0] - 2026-06-08
+
+### Added
+- `troubleshooter.py` — standalone interactive diagnostic tool for diagnosing microphone, TTS, command, and file/project issues
+- `tests/troubleshooter/` — 56 new tests across 6 files (colors, input helpers, run_cmd, system checks, fix helpers, diagnostic flows)
+- `.github/workflows/troubleshooter.yml` — CI workflow for troubleshooter tests with Codecov coverage
+- `docs/TROUBLESHOOT.md` — massively expanded troubleshooting reference (+603 lines)
+- `TROUBLESHOOT.md` (root) — quick-reference troubleshooting guide
+- Full documentation index table in `README.md` (15 docs listed)
+- `## 🔧 Troubleshooting` section in `README.md`
+
+### Changed
+- Version bumped `0.6.2` → `0.7.0` across `README.md`, `MANUAL.md`, `website/index.html`, `docs/VERSIONS.md`
+- Test suite count updated 151 → 207 in CI workflow
+- `requirements.txt` reformatted with section comments
+- All root-level doc links in `README.md` updated to `docs/` paths
+- `docs/TESTS.md` updated with troubleshooter test category
+- `docs/VERSIONS.md` Tokyo-class version range: `1.x.x` → `0.x.x -> 1.x.x`
+- `MANUAL.md` version header updated to v0.7
 
 ---
 
@@ -46,26 +90,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - compute, core-logic, filediff, integration, launch, pylint, python-tests, python-tests-per-file, system, url-engine
 - **Pylint score visibility** — `pylint.yml` now prints score to CI logs via dedicated `Pylint Score` step
 
----
-## [0.7.0] - 2026-06-08
-
-### Added
-- `troubleshooter.py` — standalone interactive diagnostic tool for diagnosing microphone, TTS, command, and file/project issues
-- `tests/troubleshooter/` — 56 new tests across 6 files (colors, input helpers, run_cmd, system checks, fix helpers, diagnostic flows)
-- `.github/workflows/troubleshooter.yml` — CI workflow for troubleshooter tests with Codecov coverage
-- `docs/TROUBLESHOOT.md` — massively expanded troubleshooting reference (+603 lines)
-- `TROUBLESHOOT.md` (root) — quick-reference troubleshooting guide
-- Full documentation index table in `README.md` (15 docs listed)
-- `## 🔧 Troubleshooting` section in `README.md`
-
-### Changed
-- Version bumped `0.6.2` → `0.7.0` across `README.md`, `MANUAL.md`, `website/index.html`, `docs/VERSIONS.md`
-- Test suite count updated 151 → 207 in CI workflow
-- `requirements.txt` reformatted with section comments
-- All root-level doc links in `README.md` updated to `docs/` paths
-- `docs/TESTS.md` updated with troubleshooter test category
-- `docs/VERSIONS.md` Tokyo-class version range: `1.x.x` → `0.x.x -> 1.x.x`
-- `MANUAL.md` version header updated to v0.7
 ---
 
 ## [0.6.0] - 2026-06-07
@@ -170,10 +194,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Class | Version | Status |
 |-------|---------|--------|
-| Tokyo-class | 0.1.0 → 0.6.2 | Current |
-| Genesis-class | — | Planned |
-| Micron-class | — | Planned (ROI-dependent) |
-| Singularity-class | — | Vision |
+| Tokyo-class | 0.1.0 → 0.7.1 | Current |
+| Odyssey-class | 1.x.x | Planned |
+| Genesis-class | 2.x.x | Planned |
+| Micron-class | 3.x.x | Planned (ROI-dependent) |
+| Aphrodite-class | 4.x.x | Planned |
+| Singularity-class | 5.x.x | Vision |
+| Utopia-class | 6.x.x | Final Vision |
 
 ---
 
@@ -181,8 +208,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **v0.X.Y** — Standard semver
 - **v0.X-Tokyo** — Tokyo-class release (current)
-- Future: **v1.X-Genesis**, **v2.X-Micron**, **vX.X-Singularity**
+- Future: **v1.X-Odyssey**, **v2.X-Genesis**, **vX.X-Singularity**
 
 ---
 
 For the full roadmap, see [ROADMAP.md](ROADMAP.md).
+
+---
+
+*Last updated: 2026-06-14 by Orbiton Workflow Agent (scheduled daily health scan)*
